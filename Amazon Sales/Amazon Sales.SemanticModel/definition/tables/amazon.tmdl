@@ -1,0 +1,204 @@
+table amazon
+	lineageTag: 43318e1b-a35b-4607-862d-c5a16aff7542
+
+	column product_id
+		dataType: string
+		lineageTag: ba85fa74-04f0-40b7-9298-f2ccb47ee1cb
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: f5b23f0e-31e5-4320-b057-1c9af3550654
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 78b1b362-d47a-4965-b588-69f1cb57f8c4
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column discounted_price
+		dataType: decimal
+		formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+		lineageTag: 45d234cd-c156-4c50-8ad2-852991cdfbb9
+		summarizeBy: sum
+		sourceColumn: discounted_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-CA"}
+
+	column actual_price
+		dataType: decimal
+		formatString: \$#,0.###############;-\$#,0.###############;\$#,0.###############
+		lineageTag: 1fe147b0-fb64-4115-b208-54e1f2f6b979
+		summarizeBy: sum
+		sourceColumn: actual_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-CA"}
+
+	column discount_percentage
+		dataType: double
+		lineageTag: b2c8e192-5181-450c-a43d-c38af584f850
+		summarizeBy: sum
+		sourceColumn: discount_percentage
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rating
+		dataType: double
+		lineageTag: fe3139ca-c077-4fa7-a202-352267017293
+		summarizeBy: sum
+		sourceColumn: rating
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rating_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 9bbe4a04-e29d-4fd7-b47f-08e5b819fbf1
+		summarizeBy: sum
+		sourceColumn: rating_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column about_product
+		dataType: string
+		lineageTag: 08bafd55-5b37-4de0-91f7-76f3127de288
+		summarizeBy: none
+		sourceColumn: about_product
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_id
+		dataType: string
+		lineageTag: f1117ce5-012d-4386-9b3a-e329f137f4d7
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_name
+		dataType: string
+		lineageTag: ba6b3a0c-0b49-41bd-9da3-4fa32a523004
+		summarizeBy: none
+		sourceColumn: user_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_id
+		dataType: string
+		lineageTag: 14c67522-8ec9-48eb-ae16-d0922830787f
+		summarizeBy: none
+		sourceColumn: review_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_title
+		dataType: string
+		lineageTag: 806a585e-a526-4708-bf93-92c889ac48b8
+		summarizeBy: none
+		sourceColumn: review_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_content
+		dataType: string
+		lineageTag: d34b496b-410e-46b5-9a16-e9f9d0fcae13
+		summarizeBy: none
+		sourceColumn: review_content
+
+		annotation SummarizationSetBy = Automatic
+
+	column img_link
+		dataType: string
+		lineageTag: 2aa352b9-0cbb-471c-baf4-fe6237d29ee0
+		summarizeBy: none
+		sourceColumn: img_link
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_link
+		dataType: string
+		lineageTag: 7b8d08b3-5bb3-44c4-9672-ae5d2ced1258
+		summarizeBy: none
+		sourceColumn: product_link
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Main Category'
+		dataType: string
+		lineageTag: 4cef4885-c503-4b00-86ef-ff83c8a9ec38
+		summarizeBy: none
+		sourceColumn: Main Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub-Cat1
+		dataType: string
+		lineageTag: e0cddc10-34fb-4238-b905-baf7694e7599
+		summarizeBy: none
+		sourceColumn: Sub-Cat1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub-Cat2
+		dataType: string
+		lineageTag: 1ea99b2e-d17f-4e0c-9289-369d5753e8ad
+		summarizeBy: none
+		sourceColumn: Sub-Cat2
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub-Cat3
+		dataType: string
+		lineageTag: 72514112-a1f5-475a-b598-f718ecd9b892
+		summarizeBy: none
+		sourceColumn: Sub-Cat3
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub-Cat4
+		dataType: string
+		lineageTag: bbf0d00f-bca6-4aee-906f-f829cd549814
+		summarizeBy: none
+		sourceColumn: Sub-Cat4
+
+		annotation SummarizationSetBy = Automatic
+
+	partition amazon = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\adnane.bekkaoui\Documents\Data Science\Data Engineer\Source Control\PBI_Source_Control\amazon.csv"),[Delimiter=",", Columns=16, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Replaced Value" = Table.ReplaceValue(#"Promoted Headers","₹","",Replacer.ReplaceText,{"discounted_price"}),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Replaced Value",{{"discounted_price", Currency.Type}}),
+				    #"Replaced Value1" = Table.ReplaceValue(#"Changed Type","₹","",Replacer.ReplaceText,{"actual_price"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value1",{{"actual_price", Currency.Type}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type1", "category", "category - Copy"),
+				    #"Split Column by Delimiter" = Table.SplitColumn(#"Duplicated Column", "category - Copy", Splitter.SplitTextByDelimiter("|", QuoteStyle.Csv), {"category - Copy.1", "category - Copy.2", "category - Copy.3", "category - Copy.4", "category - Copy.5"}),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"product_id", type text}, {"product_name", type text}, {"category", type text}, {"discount_percentage", Percentage.Type}, {"rating", type number}, {"rating_count", Int64.Type}, {"about_product", type text}, {"user_id", type text}, {"user_name", type text}, {"review_id", type text}, {"review_title", type text}, {"review_content", type text}, {"img_link", type text}, {"product_link", type text}, {"category - Copy.1", type text}, {"category - Copy.2", type text}, {"category - Copy.3", type text}, {"category - Copy.4", type text}, {"category - Copy.5", type text}}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Changed Type2",{{"category - Copy.1", "Main Category"}, {"category - Copy.2", "Sub-Cat1"}, {"category - Copy.3", "Sub-Cat2"}, {"category - Copy.4", "Sub-Cat3"}, {"category - Copy.5", "Sub-Cat4"}}),
+				    #"Removed Errors" = Table.RemoveRowsWithErrors(#"Renamed Columns", {"rating"})
+				in
+				    #"Removed Errors"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

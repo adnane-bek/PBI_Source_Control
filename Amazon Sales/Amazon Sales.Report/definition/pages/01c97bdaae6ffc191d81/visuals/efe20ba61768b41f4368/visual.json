@@ -1,0 +1,179 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "efe20ba61768b41f4368",
+  "position": {
+    "x": 83.7052546943835,
+    "y": 80.96082011423978,
+    "z": 0,
+    "height": 555.74800247910355,
+    "width": 1111.4960049582071,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "amazon"
+                    }
+                  },
+                  "Property": "Main Category"
+                }
+              },
+              "queryRef": "amazon.Main Category",
+              "nativeQueryRef": "Main Category",
+              "active": true
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "amazon"
+                    }
+                  },
+                  "Property": "Sub-Cat1"
+                }
+              },
+              "queryRef": "amazon.Sub-Cat1",
+              "nativeQueryRef": "Sub-Cat1",
+              "active": false
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "amazon"
+                    }
+                  },
+                  "Property": "Sub-Cat2"
+                }
+              },
+              "queryRef": "amazon.Sub-Cat2",
+              "nativeQueryRef": "Sub-Cat2",
+              "active": false
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "amazon"
+                        }
+                      },
+                      "Property": "actual_price"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(amazon.actual_price)",
+              "nativeQueryRef": "Sum of actual_price"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "amazon"
+                      }
+                    },
+                    "Property": "actual_price"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d38f37245958e45a8c8e",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "amazon"
+                  }
+                },
+                "Property": "actual_price"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b16b20261275920a68c8",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "amazon"
+              }
+            },
+            "Property": "Main Category"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "230aa0078f277de03880",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "amazon"
+              }
+            },
+            "Property": "Sub-Cat1"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b619b2c112a5921c0b96",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "amazon"
+              }
+            },
+            "Property": "Sub-Cat2"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}
