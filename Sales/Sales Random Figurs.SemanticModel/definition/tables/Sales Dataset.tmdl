@@ -1,0 +1,87 @@
+table 'Sales Dataset'
+	lineageTag: 69d31d79-97ee-43b2-a428-81aef7943837
+
+	column Column1
+		dataType: int64
+		formatString: 0
+		lineageTag: ae7f8895-3a60-4600-b096-dd3ac34da5c4
+		summarizeBy: sum
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d9f37617-f4a0-49d6-8d29-016dc780c069
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Gender
+		dataType: string
+		lineageTag: f1537763-2228-4a1d-8961-358e1756e01a
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column Age
+		dataType: int64
+		formatString: 0
+		lineageTag: 9738d289-0dd0-42d8-a8d0-bd1a4168d597
+		summarizeBy: sum
+		sourceColumn: Age
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Category'
+		dataType: string
+		lineageTag: c48947bb-1e18-4e13-99c5-823b813c93ab
+		summarizeBy: none
+		sourceColumn: Product Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: b1dcb1eb-279a-4685-be3f-4b7e26a631c3
+		summarizeBy: sum
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Price per Unit'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2c6d46f2-9ac6-4ba9-bb22-1dd59faa96f6
+		summarizeBy: sum
+		sourceColumn: Price per Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Total Amount'
+		dataType: int64
+		formatString: 0
+		lineageTag: 21155feb-855b-43ae-9134-0dc0097a60d3
+		summarizeBy: sum
+		sourceColumn: Total Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Sales Dataset' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\adnane.bekkaoui\Documents\Data Science\Datasets\Sales Dataset.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"", Int64.Type}, {"Date", type date}, {"Gender", type text}, {"Age", Int64.Type}, {"Product Category", type text}, {"Quantity", Int64.Type}, {"Price per Unit", Int64.Type}, {"Total Amount", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

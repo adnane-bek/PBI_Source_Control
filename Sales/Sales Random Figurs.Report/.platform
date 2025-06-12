@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Sales Random Figurs"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8e98daa3-3160-44ef-8f45-86d62e3ac711"
+  }
+}
