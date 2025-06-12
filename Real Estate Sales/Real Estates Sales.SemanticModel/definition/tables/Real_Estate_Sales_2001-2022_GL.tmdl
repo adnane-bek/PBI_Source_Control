@@ -1,0 +1,136 @@
+table Real_Estate_Sales_2001-2022_GL
+	lineageTag: c41bba65-64dd-43c3-9cc1-3e0798bbe199
+
+	column 'Serial Number'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c6e872d-85ea-4b76-a9ae-33957de37cd7
+		summarizeBy: sum
+		sourceColumn: Serial Number
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'List Year'
+		dataType: int64
+		formatString: 0
+		lineageTag: f61bb8cc-994b-4521-bbe0-4006027e7112
+		summarizeBy: sum
+		sourceColumn: List Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Recorded'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5c76f441-4638-455a-82c6-dcf3c5a1eb12
+		summarizeBy: none
+		sourceColumn: Date Recorded
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Town
+		dataType: string
+		lineageTag: 24745d35-ef14-4062-8af6-38407602b3af
+		summarizeBy: none
+		sourceColumn: Town
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address
+		dataType: string
+		lineageTag: f9777fa3-0bce-4ee8-aada-2a015a7ad488
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Assessed Value'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d389dba-6312-444c-abeb-d9d5ddabf63b
+		summarizeBy: sum
+		sourceColumn: Assessed Value
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sale Amount'
+		dataType: int64
+		formatString: 0
+		lineageTag: e8bffd8f-d747-4350-b34c-686ac02f15b9
+		summarizeBy: sum
+		sourceColumn: Sale Amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Sales Ratio'
+		dataType: double
+		lineageTag: 0ceffbb9-7066-49b6-bbd8-fb46157d7c8c
+		summarizeBy: sum
+		sourceColumn: Sales Ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Property Type'
+		dataType: string
+		lineageTag: ab5ecf1d-d522-47de-82a9-a33cfe8d2725
+		summarizeBy: none
+		sourceColumn: Property Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Residential Type'
+		dataType: string
+		lineageTag: d1ba0aac-d8db-4d8e-b598-e6803a99f165
+		summarizeBy: none
+		sourceColumn: Residential Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Non Use Code'
+		dataType: string
+		lineageTag: 1b4c90e9-0bdc-4ca1-8e3a-b9f613d346ad
+		summarizeBy: none
+		sourceColumn: Non Use Code
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Assessor Remarks'
+		dataType: string
+		lineageTag: feedd751-ee6b-4249-8582-c0434788efb6
+		summarizeBy: none
+		sourceColumn: Assessor Remarks
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'OPM remarks'
+		dataType: string
+		lineageTag: bb5fe143-aedc-48f0-a570-0a57f6756ea3
+		summarizeBy: none
+		sourceColumn: OPM remarks
+
+		annotation SummarizationSetBy = Automatic
+
+	column Location
+		dataType: string
+		lineageTag: e98df373-f432-40b2-a2d2-7352c1b23721
+		summarizeBy: none
+		sourceColumn: Location
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Real_Estate_Sales_2001-2022_GL = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\adnane.bekkaoui\Documents\Data Science\Datasets\Real estate\Real_Estate_Sales_2001-2022_GL.csv"),[Delimiter=",", Columns=14, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Serial Number", Int64.Type}, {"List Year", Int64.Type}, {"Date Recorded", type date}, {"Town", type text}, {"Address", type text}, {"Assessed Value", Int64.Type}, {"Sale Amount", Int64.Type}, {"Sales Ratio", type number}, {"Property Type", type text}, {"Residential Type", type text}, {"Non Use Code", type text}, {"Assessor Remarks", type text}, {"OPM remarks", type text}, {"Location", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

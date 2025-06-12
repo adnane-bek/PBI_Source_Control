@@ -1,0 +1,205 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "6c1c6a9ea0a3c25a5af3",
+  "position": {
+    "x": 13.617021276595745,
+    "y": 39.878419452887542,
+    "z": 0,
+    "height": 665.28875379939211,
+    "width": 1246.9300911854104,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real_Estate_Sales_2001-2022_GL"
+                    }
+                  },
+                  "Property": "Date Recorded"
+                }
+              },
+              "queryRef": "Real_Estate_Sales_2001-2022_GL.Date Recorded",
+              "nativeQueryRef": "Date Recorded",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Real_Estate_Sales_2001-2022_GL"
+                    }
+                  },
+                  "Property": "Property Type"
+                }
+              },
+              "queryRef": "Real_Estate_Sales_2001-2022_GL.Property Type",
+              "nativeQueryRef": "Property Type"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Real_Estate_Sales_2001-2022_GL"
+                        }
+                      },
+                      "Property": "Sale Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Real_Estate_Sales_2001-2022_GL.Sale Amount)",
+              "nativeQueryRef": "Sum of Sale Amount"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Real_Estate_Sales_2001-2022_GL"
+                  }
+                },
+                "Property": "Date Recorded"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1cc33189431f72c12e42",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Real_Estate_Sales_2001-2022_GL"
+                  }
+                },
+                "Property": "Sale Amount"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d9dc0ed4b3b5a1a1b64a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Real_Estate_Sales_2001-2022_GL"
+              }
+            },
+            "Property": "Date Recorded"
+          }
+        },
+        "type": "RelativeDate",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "r",
+              "Entity": "Real_Estate_Sales_2001-2022_GL",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Between": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "r"
+                        }
+                      },
+                      "Property": "Date Recorded"
+                    }
+                  },
+                  "LowerBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "DateAdd": {
+                          "Expression": {
+                            "DateAdd": {
+                              "Expression": {
+                                "Now": {}
+                              },
+                              "Amount": 1,
+                              "TimeUnit": 0
+                            }
+                          },
+                          "Amount": -2,
+                          "TimeUnit": 3
+                        }
+                      },
+                      "TimeUnit": 0
+                    }
+                  },
+                  "UpperBound": {
+                    "DateSpan": {
+                      "Expression": {
+                        "Now": {}
+                      },
+                      "TimeUnit": 0
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "30b64a197d80f0bbce5e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Real_Estate_Sales_2001-2022_GL"
+              }
+            },
+            "Property": "Property Type"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}
